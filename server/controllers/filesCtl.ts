@@ -6,6 +6,9 @@ import { createInterface } from "readline";
 import { ObjFile } from "../types/exportTypes";
 import { filesDbCollection } from "../configs/mongoDB";
 
+// TODO: For a production website, it is recommended to use user authentication
+// TODO: You can implement user authentication using libraries like Passport.js or Firebase Authentication for a quick and secure solution
+
 // Get List files
 export const getListFiles = async (req: Request, res: Response) => {
   try {
@@ -121,6 +124,10 @@ export const getDownloadFile = async (req: Request, res: Response) => {
   }
 };
 
+// TODO: For a production website, it is recommended to use a cloud storage solution such as AWS S3 buckets
+// TODO: Instead of directly storing the file in the file system
+// TODO: To do that, you can utilize multer and multer-s3 to stream the file directly to AWS S3
+
 // Post upload file
 export const postUploadFile = async (req: Request, res: Response) => {
   const file = req.file;
@@ -201,6 +208,9 @@ export const getTransformFile = async (req: Request, res: Response) => {
         transformedLines.push(line); // Add the original line to the array
       }
     });
+
+    // TODO: For a production website, it is recommended to store the transformedFileContent inside the cloud
+    // TODO: And save the unique transformedFileName inside the mongoDB document of the file
 
     // After you finish to transform each lines
     lineReader.on("close", () => {
